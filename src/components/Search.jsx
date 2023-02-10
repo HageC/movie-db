@@ -8,7 +8,7 @@ export default function Search() {
         <input
           className="search"
           type="text"
-          placeholder="Enter movie/show name"
+          placeholder="Enter movie/show name.."
         />
       </div>
     </div>
