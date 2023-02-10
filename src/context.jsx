@@ -1,9 +1,17 @@
-import React, { useContext } from "react";
-
+import React, { useContext, useState } from "react";
+import useFetch from "./hooks/useFetch";
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  return <AppContext.Provider value={{}}>{children}</AppContext.Provider>;
+  const [search, setSearch] = useState("");
+  const { isLoading, error, movies } = useFetch(search);
+  return (
+    <AppContext.Provider
+      value={{ setSearch, search, isLoading, error, movies }}
+    >
+      {children}
+    </AppContext.Provider>
+  );
 };
 
 export const useGlobalContext = () => {
