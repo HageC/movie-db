@@ -7,6 +7,8 @@ const useFetch = (url) => {
 
   const getMovies = async (url) => {
     if (!url) {
+      setIsLoading(false);
+      setError({ error: false, msg: "" });
       return;
     }
     setIsLoading(true);
@@ -19,14 +21,15 @@ const useFetch = (url) => {
       );
       const data = await response.json();
       if (data?.Error) {
-        console.log(data);
         setError({ error: true, msg: data.Error });
+        setMovies(null);
       } else {
         setError({ error: false, msg: "" });
         setMovies(data);
       }
     } catch (error) {
       setError(true);
+      setMovies(null);
     }
     setIsLoading(false);
   };
